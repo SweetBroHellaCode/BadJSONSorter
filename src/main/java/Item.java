@@ -20,9 +20,10 @@ public class Item {
 
     private void parseRawData(){
         String[] rawDataArray = rawData.split("[;%!@^]");
+        Pattern pattern = Pattern.compile("name:\\w+", Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
         for(String element: rawDataArray){
-            Pattern pattern = Pattern.compile("name:\\w+", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(element);
+            matcher = pattern.matcher(element);
             if (matcher.find()){
                 String[] keyValue = element.split(":");
                 this.name = keyValue[1];

@@ -14,13 +14,22 @@ public class ItemParser {
 
 
     public ItemParser(){
+        itemList = new ArrayList<Item>();
+        errorList = new ArrayList<String>();
         parseInput();
     }
+    private ArrayList<Item> itemList;
+    private ArrayList<String> errorList;
 
     private void parseInput(){
         String[] parsedData = input.split("##");
         for(String rawItemData:parsedData){
-            Item item = new Item(rawItemData);
+            try {
+                Item item = new Item(rawItemData);
+                itemList.add(item);
+            }catch(Exception ex){
+                errorList.add("Found an error");
+            }
         }
     }
     public static void main(String[] args){
