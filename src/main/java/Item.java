@@ -19,14 +19,22 @@ public class Item {
     }
 
     private void parseRawData(){
-        String[] rawDataArray = rawData.split("[;%!@^]");
-        Pattern pattern = Pattern.compile("name:\\w+", Pattern.CASE_INSENSITIVE);
-        Matcher matcher;
+        String[] rawDataArray = rawData.split("[;%!@^*]");
+        Pattern namePattern = Pattern.compile("name:\\w+", Pattern.CASE_INSENSITIVE);
+        Pattern pricePattern = Pattern.compile("price:\\w+", Pattern.CASE_INSENSITIVE);
+        Pattern typePattern = Pattern.compile("type:\\w+", Pattern.CASE_INSENSITIVE);
+        Pattern expirationPattern = Pattern.compile("expiration:\\w+", Pattern.CASE_INSENSITIVE);
         for(String element: rawDataArray){
-            matcher = pattern.matcher(element);
-            if (matcher.find()){
-                String[] keyValue = element.split(":");
-                this.name = keyValue[1];
+            try {
+                if (namePattern.matcher(element).find()) {
+                    this.name = element.split(":")[1];
+                } else if (pricePattern.matcher(element).find()) {
+                    this.price = Float.valueOf(element.split(":")[1]);
+                } else if (typePattern.matcher(element).find()){
+                    this.type = element.split(":")[1];
+                }
+            } catch (Exception e){
+                //throw new
             }
         }
 
