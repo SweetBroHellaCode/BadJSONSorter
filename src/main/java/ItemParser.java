@@ -12,27 +12,37 @@ public class ItemParser {
                             "naMe:apPles;prIce:0.25;type:Food;expiration:1/23/2016##naMe:apPles;pRice:0.23;type:Food;expiration:5/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:1/25/2016##"+
                             "naMe:;price:3.23;type:Food^expiration:1/04/2016##";
 
+    private String input2 = "naMe:Milk;price:3.23;type:Food;expiration:1/25/2016##naME:BreaD;price:1.23;type:Food;expiration:1/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:2/25/2016##";
 
-    public ItemParser(){
-        itemList = new ArrayList<Item>();
-        errorList = new ArrayList<String>();
-        parseInput();
-    }
-    private ArrayList<Item> itemList;
-    private ArrayList<String> errorList;
-
-    private void parseInput(){
-        String[] parsedData = input.split("##");
-        for(String rawItemData:parsedData){
-            try {
-                Item item = new Item(rawItemData);
-                itemList.add(item);
-            }catch(Exception ex){
-                errorList.add("Found an error");
-            }
+    /**
+     * 
+     * @return
+     */
+    public String[] parseInput(){
+        String[] parsed = input.split("##");
+        for(int i=0; i<parsed.length; i++){
+            System.out.println(parsed[i]);
         }
+
+        return parsed;
+
     }
+
+    /**
+     *
+     * @param _input
+     */
+    public ItemParser(String _input){
+        this.input = _input;
+    }
+    public ItemParser(){
+
+    }
+
+
     public static void main(String[] args){
         ItemParser itemParser = new ItemParser();
+        itemParser.parseInput();
+        Item itemTest = new Item(itemParser.parseInput()[0]);
     }
 }
