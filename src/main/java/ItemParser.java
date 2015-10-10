@@ -13,23 +13,20 @@ public class ItemParser {
             "naMe:apPles;prIce:0.25;type:Food;expiration:1/23/2016##naMe:apPles;pRice:0.23;type:Food;expiration:5/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:1/25/2016##" +
             "naMe:;price:3.23;type:Food^expiration:1/04/2016##";
 
-   // private String input2 = "naMe:Milk;price:3.23;type:Food;expiration:1/25/2016##naME:BreaD;price:1.23;type:Food;expiration:1/02/2016##NAMe:BrEAD;price:1.23;type:Food;expiration:2/25/2016##";
-
+    /**
+     * Separates each item from the input to it's own array
+     *
+     * @return
+     */
 
     public String[] parseInput() {
         String[] parsed = input.split("##");
         return parsed;
     }
 
-    public ItemParser(String _input) {
-        this.input = _input;
-    }
-
-    public ItemParser() {
-
-    }
 
     public static void main(String[] args) {
+
         ItemParser itemParser = new ItemParser();
 
         Item itemList = new Item(itemParser.parseInput());

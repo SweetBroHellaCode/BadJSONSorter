@@ -1,25 +1,26 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 /**
  * Created by jguevara on 10/9/15.
  */
 public class ItemParserSpec {
-    ItemParser itemParser;
-    @Test
-    public void parseInputTest(){
-        itemParser = new ItemParser("hello ## gabe");
-        String[] parseArray = itemParser.parseInput();
-        Assert.assertTrue("make sure that it is not null",parseArray != null);
-        Assert.assertEquals("test that it returns array",2,parseArray.length);
+
+    ItemParser itemParserTest;
+
+    @Before
+
+    public void resourcesNeededToTest() {
+        itemParserTest = new ItemParser();
     }
 
     @Test
-    public void secondTest(){
-        itemParser = new ItemParser("hello ## gabe ##");
-        String[] parseArray = itemParser.parseInput();
-        Assert.assertTrue("make sure that it is not null",parseArray != null);
-        Assert.assertEquals("test that it returns length",2,parseArray.length);
+
+    public void givenInputShouldReturnParsedStringArray() {
+        assertEquals("Should return a String Array of length 28", 28, itemParserTest.parseInput().length);
     }
 }
